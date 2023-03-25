@@ -1,7 +1,9 @@
 import { StyleSheet } from "react-native";
 import Colors, { themeOptions } from "../../constants";
 
-export const HomeScreenStyles = (theme: themeOptions) =>
+export const ScreenViewStyles = (theme: themeOptions) =>
   StyleSheet.create({
-    title: {},
+    wrapper: {
+      backgroundColor: Colors[theme].bgColor,
+    },
   });

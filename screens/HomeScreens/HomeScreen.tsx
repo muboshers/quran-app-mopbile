@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, Button, useColorScheme, StyleSheet } from "react-native";
+import { View, Text, Button } from "react-native";
 import { HomeScreenStyles } from "./home-screen.styles";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootParamsList } from "../../App";
 import { ScreenView } from "../../components/screen-view";
-import { useTheme } from "../../hooks/useTheme";
 import { colorLabels } from "../../constants";
+import { useThemeContext } from "../../context/ThemeProvider";
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootParamsList,
@@ -15,7 +15,7 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<
 
 export function HomeScreens() {
   const navigate = useNavigation<HomeScreenNavigationProp>();
-  const { themeOperations, themeValue } = useTheme();
+  const { setTheme, themeValue } = useThemeContext();
   const styles = HomeScreenStyles(themeValue);
 
   return (
@@ -25,7 +25,7 @@ export function HomeScreens() {
         {colorLabels.map((color) => (
           <Button
             title={color.label}
-            onPress={() => themeOperations(color.value)}
+            onPress={() => setTheme(color.value)}
             key={color.label}
           />
         ))}
