@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { TopBarStyles } from "./top-bar.styles";
 import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
@@ -7,7 +7,11 @@ import { useThemeContext } from "../../context/ThemeProvider";
 import Colors from "../../constants";
 import { SearchPanel } from "./components/search-panel";
 
-export const TopBar = () => {
+interface TopBarProps {
+  setIsSettings: (isSettings: boolean) => void;
+}
+
+export const TopBar = ({ setIsSettings }: TopBarProps) => {
   const { themeValue } = useThemeContext();
   const styles = TopBarStyles(themeValue);
   const [isActive, setIsActive] = useState(false);
@@ -27,7 +31,7 @@ export const TopBar = () => {
             color={Colors[themeValue].white}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setIsSettings(true)}>
           <Feather name="settings" size={24} color={Colors[themeValue].white} />
         </TouchableOpacity>
       </View>

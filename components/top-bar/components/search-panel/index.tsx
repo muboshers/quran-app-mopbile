@@ -67,4 +67,3 @@ export const SearchPanel = ({ isActive, setIsActive }: SearchPanelProps) => {
     </Animated.View>
   );
 };
-
